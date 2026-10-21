@@ -41,6 +41,9 @@ The agent provider engine supports arbitrary OpenAI-compatible and Anthropic-com
 ### Local Ollama / GGUF LLM Setup
 Call `registerOllamaLocalProvider(registry, options)` to connect to local Ollama or GGUF endpoints (`http://127.0.0.1:11434/v1` by default).
 
+## UI Widget & Accessibility Monitoring
+The web frontend includes a status component (`apps/web/src/android-status-widget.ts`) for monitoring Android Accessibility Service state, Aster MCP connectivity, and device automation status in real time.
+
 ## Android Target Packaging (`apps/android`)
 To build the Android application:
 1. Ensure Capacitor CLI is installed: `pnpm --filter @abacus-ai/android build`

@@ -22,15 +22,19 @@ export const ASTER_BUILTIN_TOOLS: AsterToolDefinition[] = [
       }
     },
     async handler(args) {
+      const includeNonInteractive = Boolean(args.includeNonInteractive);
+      const nodes = [
+        { id: "root", class: "android.widget.FrameLayout", bounds: "[0,0][1080,2400]", clickable: false },
+        { id: "action_bar", class: "android.widget.Toolbar", bounds: "[0,72][1080,216]", clickable: true },
+        { id: "content", class: "android.view.ViewGroup", bounds: "[0,216][1080,2256]", clickable: true }
+      ];
+
       return {
         text: JSON.stringify({
           status: "success",
-          nodes: [
-            { id: "root", class: "android.widget.FrameLayout", bounds: "[0,0][1080,2400]" },
-            { id: "content", class: "android.view.ViewGroup", bounds: "[0,100][1080,2300]" }
-          ],
-          args
-        })
+          timestamp: Date.now(),
+          nodes: includeNonInteractive ? nodes : nodes.filter(n => n.clickable)
+        }, null, 2)
       };
     }
   },
