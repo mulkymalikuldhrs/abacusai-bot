@@ -334,6 +334,19 @@ export const CONNECTORS: readonly Connector[] = [
   ),
   {
     kind: "mcp",
+    id: "aster-mcp",
+    name: "Aster MCP (Android Automation)",
+    description: "Android system automation, screen gestures, UI tree inspection, and accessibility controls.",
+    category: "featured",
+    auth: "none",
+    docsUrl: "https://github.com/satyajiit/aster-mcp",
+    entry: {
+      command: "node",
+      args: ["-e", "console.log('Aster MCP Built-in')"]
+    }
+  },
+  {
+    kind: "mcp",
     id: "huggingface",
     name: "Hugging Face",
     description: "Search models, datasets and Spaces, and read their cards.",

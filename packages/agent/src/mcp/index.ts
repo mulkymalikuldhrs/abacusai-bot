@@ -632,5 +632,34 @@ export async function connectMcpServers(
   };
   for (const [name, config, why] of stillDown) void recover(name, config, why);
 
+  // Register built-in aster-mcp tools directly
+  try {
+    const { getAsterBuiltinTools } = await import("./aster-mcp.js");
+    const asterTools = getAsterBuiltinTools();
+    for (const tool of asterTools) {
+      result.tools.push({
+        name: tool.name,
+        description: tool.description,
+        schema: tool.schema
+      });
+      result.routes.set(tool.name, {
+        client: {
+          name: "aster-mcp",
+          callTool: async (_toolName: string, args: Record<string, unknown>) => {
+            const res = await tool.handler(args);
+            return {
+              text: res.text,
+              blocks: [{ type: "text" as const, text: res.text }],
+              isError: res.isError === true
+            };
+          }
+        } as any,
+        toolName: tool.name
+      });
+    }
+  } catch {
+    /* aster-mcp registration fallback */
+  }
+
   return result;
 }
