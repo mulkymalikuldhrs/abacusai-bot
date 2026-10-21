@@ -45,3 +45,5 @@ apps/web/build-metadata/
 
 # Regenerated before web/desktop builds and development.
 apps/web/public/licenses/
+
+apps/android/android/app/src/main/assets/
