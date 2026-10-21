@@ -123,6 +123,7 @@ export function registerCustomProviders(
   registry: ModelRegistry,
   config: AbacusBotConfig
 ): void {
+  registerOllamaLocalProvider(registry as any);
   for (const provider of config.customProviders ?? []) {
     try {
       registry.registerProvider(provider.id, toProviderConfig(provider));
