@@ -7,6 +7,8 @@
   "scripts": {
     "build": "pnpm run build:web && pnpm run cap:sync",
     "build:web": "mkdir -p dist && (cp -r ../web/dist/* dist/ 2>/dev/null || cp -r ../web/* dist/ 2>/dev/null || echo 'Bundled web app assets into dist')",
+    "build:apk": "pnpm run build && cd android && ./gradlew assembleDebug",
+    "build:apk:release": "pnpm run build && cd android && ./gradlew assembleRelease",
     "cap:sync": "capacitor sync android",
     "cap:open": "capacitor open android"
   },

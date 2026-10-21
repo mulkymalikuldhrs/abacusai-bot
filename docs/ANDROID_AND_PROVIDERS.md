@@ -44,8 +44,26 @@ Call `registerOllamaLocalProvider(registry, options)` to connect to local Ollama
 ## UI Widget & Accessibility Monitoring
 The web frontend includes a status component (`apps/web/src/android-status-widget.ts`) for monitoring Android Accessibility Service state, Aster MCP connectivity, and device automation status in real time.
 
-## Android Target Packaging (`apps/android`)
-To build the Android application:
-1. Ensure Capacitor CLI is installed: `pnpm --filter @abacus-ai/android build`
-2. Sync capacitor assets to Android native wrapper: `pnpm --filter @abacus-ai/android cap:sync`
-3. Open in Android Studio to build APK/AAB: `pnpm --filter @abacus-ai/android cap:open`
+## Android Target Packaging & APK Release (`apps/android`)
+To build the Android application and generate `.apk` release packages:
+
+### Build APK Packages
+1. Build web assets & sync to Capacitor Android wrapper:
+   ```bash
+   pnpm --filter @abacus-ai/android build
+   ```
+2. Generate Debug APK binary (`app-debug.apk`):
+   ```bash
+   pnpm --filter @abacus-ai/android build:apk
+   ```
+3. Generate Signed Release APK binary (`app-release.apk`):
+   ```bash
+   pnpm --filter @abacus-ai/android build:apk:release
+   ```
+
+Outputs will be placed in `apps/android/android/app/build/outputs/apk/debug/app-debug.apk` and `apps/android/android/app/build/outputs/apk/release/app-release-unsigned.apk`.
+
+4. Open project in Android Studio (optional):
+   ```bash
+   pnpm --filter @abacus-ai/android cap:open
+   ```
