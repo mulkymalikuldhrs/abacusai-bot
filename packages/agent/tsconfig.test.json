@@ -1,8 +1,0 @@
-{
-  "extends": "@abacus-ai/config/typescript/node",
-  "compilerOptions": {
-    "noUncheckedIndexedAccess": true,
-    "types": ["node"]
-  },
-  "include": ["src", "tsdown.config.ts", "vitest.config.ts"]
-}

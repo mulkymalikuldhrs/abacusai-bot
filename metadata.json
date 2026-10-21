@@ -1,0 +1,8 @@
+{
+  "name": "AbacusAI Bot",
+  "description": "Autonomous personal agents for messaging apps, connected work services, tools, and scheduled routines.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

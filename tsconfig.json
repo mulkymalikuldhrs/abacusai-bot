@@ -1,29 +1,27 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./apps/desktop"
-    },
-    {
-      "path": "./apps/updater"
-    },
-    {
-      "path": "./packages/agent"
-    },
-    {
-      "path": "./packages/config"
-    },
-    {
-      "path": "./packages/test-support"
-    },
-    {
-      "path": "./apps/web"
-    },
-    {
-      "path": "./packages/contract"
-    },
-    {
-      "path": "./apps/host"
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
     }
-  ]
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", "apps", "dist"]
 }
