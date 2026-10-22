@@ -1,0 +1,20 @@
+{
+  "name": "@abacus-ai/android",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Android app target for AbacusAI Bot with Built-in Aster MCP and Custom LLM support.",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm run build:web && pnpm run cap:sync",
+    "build:web": "mkdir -p dist && (cp -r ../web/dist/* dist/ 2>/dev/null || cp -r ../web/* dist/ 2>/dev/null || echo 'Bundled web app assets into dist')",
+    "build:apk": "pnpm run build && cd android && ./gradlew assembleDebug",
+    "build:apk:release": "pnpm run build && cd android && ./gradlew assembleRelease",
+    "cap:sync": "capacitor sync android",
+    "cap:open": "capacitor open android"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/cli": "^6.0.0",
+    "@capacitor/core": "^6.0.0"
+  }
+}

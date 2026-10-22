@@ -8,6 +8,13 @@
 
 ## Unreleased
 
+- **Android Support**: Added Capacitor app packaging target under `apps/android` with native system permissions (accessibility, storage, network).
+- **Built-in Aster MCP**: Integrated Android accessibility & system automation MCP tools (`aster_get_ui_tree`, `aster_tap`, `aster_swipe`, `aster_input_text`, `aster_launch_app`, `aster_press_key`).
+- **Flexible LLM / AI Providers (brud pattern)**: Enhanced provider system to support custom base URLs, custom API keys, Anthropic/OpenAI compatibility modes, and local Ollama / .gguf models.
+- **Workflow Engine**: Added multi-step agent workflow execution engine with fallback and stateful tracking loops.
+- **Integrated Skills**: Integrated anti-slop quality filters (`anti-slop`), universal code modding (`universal-modder`), and reactive execution agent workflows (`docs/SKILLS_AND_WORKFLOWS.md`).
+- **Hierarchical Agents & MoA Fusion**: Dynamic sub-agent spawning, hierarchical reporting, Mixture-of-Agents consensus, shared codebase memory, and session watchdog (`docs/HIERARCHICAL_AGENTS.md`).
+
 The app has a new rail for Bots, Sessions, Routines, Artifacts and Library. Library brings together connectors, messaging, MCP servers, skills and tools. Settings has separate pages and search. The system draws the title bar, and your light, dark or system theme applies before the window appears.
 
 A companion around the Mac notch, or by the Windows clock, shows bot activity and requests your attention. You can turn it off in General settings. Sounds have per-bot levels and quiet hours; system notifications are silent. Bots keep their looks in the new avatar style, math renders as replies arrive, and the tour can be replayed from Settings.

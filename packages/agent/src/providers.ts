@@ -123,6 +123,7 @@ export function registerCustomProviders(
   registry: ModelRegistry,
   config: AbacusBotConfig
 ): void {
+  registerOllamaLocalProvider(registry as any);
   for (const provider of config.customProviders ?? []) {
     try {
       registry.registerProvider(provider.id, toProviderConfig(provider));
@@ -556,24 +557,60 @@ export async function registerAbacusProvider(
 }
 
 function toProviderConfig(provider: CustomProviderConfig) {
+  // Support custom base URLs, custom API keys, Anthropic/OpenAI/Ollama/local .gguf compatibility (brud pattern)
+  const apiType = (provider as { api?: string }).api === "anthropic-messages"
+    ? ("anthropic-messages" as const)
+    : ("openai-completions" as const);
+
   return {
     name: provider.name ?? provider.id,
     baseUrl: provider.baseUrl,
     ...(provider.apiKey ? { apiKey: provider.apiKey } : {}),
-    api: "openai-completions" as const,
+    api: apiType,
     ...(provider.headers ? { headers: provider.headers } : {}),
     models: (provider.models ?? []).map((model) => ({
       id: model.id,
       name: model.name ?? model.id,
       reasoning: model.reasoning ?? false,
       input: ["text" as const],
-      // No billing meter on a self-hosted endpoint; zero cost is accurate and
-      // marks these "free" in the picker.
+      // No billing meter on a self-hosted / local Ollama / .gguf endpoint; zero cost is accurate.
       cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
       contextWindow: model.contextWindow ?? 128_000,
       maxTokens: model.maxTokens ?? 8_192,
     })),
   };
+}
+
+/**
+ * Register Ollama / Local .GGUF LLM provider with custom base URL and API keys.
+ */
+export function registerOllamaLocalProvider(
+  registry: ModelRegistry,
+  options?: { baseUrl?: string; apiKey?: string; models?: Array<{ id: string; name?: string }> }
+): void {
+  const baseUrl = options?.baseUrl ?? process.env.OLLAMA_BASE_URL ?? "http://127.0.0.1:11434/v1";
+  const apiKey = options?.apiKey ?? process.env.OLLAMA_API_KEY ?? "ollama";
+  const customModels = options?.models ?? [
+    { id: "llama3", name: "Llama 3 (Local / Ollama)" },
+    { id: "qwen2.5-coder", name: "Qwen 2.5 Coder (Local / Ollama)" },
+    { id: "deepseek-r1", name: "DeepSeek R1 (Local / GGUF / Ollama)" }
+  ];
+
+  registry.registerProvider("ollama-local", {
+    name: "Ollama / Local GGUF LLM",
+    baseUrl,
+    apiKey,
+    api: "openai-completions" as const,
+    models: customModels.map((m) => ({
+      id: m.id,
+      name: m.name ?? m.id,
+      reasoning: true,
+      input: ["text" as const],
+      cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+      contextWindow: 128_000,
+      maxTokens: 8_192,
+    })),
+  });
 }
 
 export function listProviderStatus(

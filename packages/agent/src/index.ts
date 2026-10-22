@@ -69,6 +69,11 @@ export {
   isOpenLlmPoolModel,
   UsageScanner,
 } from "./usage-stats.js";
+export { registerCustomProviders, registerAbacusProvider, registerOllamaLocalProvider } from "./providers.js";
+export { DynamicAgentNode, MixtureOfAgentsFusion } from "./hierarchical-agents.js";
+export { SharedMemoryStore, SessionWatchdog, compactContextHistory } from "./shared-memory.js";
+export { applyAntiSlopFilter, applyUniversalCodeMod } from "./integrated-skills.js";
+export { AgentWorkflowRunner } from "./workflow-engine.js";
 export type {
   ModelUsageStats,
   OpenRouterKeyStatus,

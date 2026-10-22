@@ -1,0 +1,12 @@
+{
+  "appId": "ai.abacus.bot.android",
+  "appName": "AbacusAI Bot",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": true,
+    "captureInput": true
+  }
+}

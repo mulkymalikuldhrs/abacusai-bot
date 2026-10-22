@@ -26,9 +26,17 @@
   <a href="https://bot.abacus.ai/download?platform=macos&amp;arch=arm64&amp;method=os_link&amp;token=readme">macOS (Apple silicon)</a> ·
   <a href="https://bot.abacus.ai/download?platform=macos&amp;arch=x64&amp;method=os_link&amp;token=readme">macOS (Intel)</a> ·
   <a href="https://bot.abacus.ai/download?platform=windows&amp;arch=x64&amp;method=os_link&amp;token=readme">Windows</a> ·
-  <a href="https://bot.abacus.ai/download?platform=linux&amp;arch=x64&amp;method=os_link&amp;token=readme">Linux</a>
+  <a href="https://bot.abacus.ai/download?platform=linux&amp;arch=x64&amp;method=os_link&amp;token=readme">Linux</a> ·
+  <a href="docs/ANDROID_AND_PROVIDERS.md">Android</a>
   <br><sub>Free forever. Signed and notarized installers.</sub>
 </p>
+
+## Highlights
+- **Android Support**: Packaging target under `apps/android` with full Capacitor configuration and Android system permissions.
+- **Built-in Aster MCP**: Built-in Android accessibility & automation MCP server (`aster_get_ui_tree`, `aster_tap`, `aster_swipe`, `aster_input_text`, `aster_launch_app`, `aster_press_key`).
+- **Flexible LLM / AI Providers (brud pattern)**: Native support for custom base URLs, custom API keys, Anthropic/OpenAI compatibility, Ollama, and local GGUF models.
+- **Integrated Skills & Workflows**: Anti-slop quality filters (`anti-slop`), universal code modding (`universal-modder`), reverse engineering tools (`rea`), and reactive multi-step agent workflows (`docs/SKILLS_AND_WORKFLOWS.md`).
+- **Hierarchical Agents & MoA Fusion**: Dynamic recursive sub-agent roles, hierarchical reporting, Mixture-of-Agents consensus, shared codebase memory, and session watchdog (`docs/HIERARCHICAL_AGENTS.md`).
 
 Create a bot for a job you want to hand off. Give it a name, instructions, and a model. Each bot keeps its own chat and memory and uses the tools you enable. Message it from the desktop, WhatsApp, Telegram, or Discord. It can work in Gmail, Google Drive, Slack, GitHub, Notion, and other connected services, then check in or run again on a schedule.
 
